@@ -1,7 +1,7 @@
 import express from "express";
 import connectDb from "./config/db.js";
 import dotenv from "dotenv";
-import Todos from "./Model/todoModel.js";
+import todoRoute from "./routes/todoRoutes.js";
 
 dotenv.config();
 
@@ -16,23 +16,10 @@ let port = process.env.PORT;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.send("success");
-});
 
-app.post("/create", async (req, res) => {
-  //   let title = req.body.title
-  //   let description = req.body.description
+// http://localhost:4000/api/todo
+app.use('/api/todo' , todoRoute) // todo related request must start with /api/todo
 
-  let { title, description } = req.body;
-
-  let todo = await Todos.create({
-    title,
-    description,
-  });
-
-  res.send(todo);
-});
 
 app.listen(port, () => console.log("server started"));
 // BPFARg6bh4sCrJD5
