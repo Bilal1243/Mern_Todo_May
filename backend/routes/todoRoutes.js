@@ -1,7 +1,7 @@
 import express from "express";
 
 const todoRoute = express.Router();
-import { addTodo, deleteTodo, getTodoById, getTodos } from "../controllers/todoController.js";
+import { addTodo, deleteTodo, getTodoById, getTodos, updateTodo } from "../controllers/todoController.js";
 
 // http://localhost:4000/api/todo
 todoRoute.get("/", getTodos);
@@ -14,5 +14,7 @@ todoRoute.delete('/delete/:id' , deleteTodo)
 
 // http://localhost:4000/api/todo/getTodo
 todoRoute.get('/getTodo',getTodoById)
+
+todoRoute.patch('/updateTodo' , updateTodo)
 
 export default todoRoute;
